@@ -17,3 +17,10 @@ h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
 h1,h2,h3,h4,h5,h6 {
     color: #b34848;
 }
+
+.comment{
+    border-style: solid;
+    color: red;
+    border-width: 2px;
+    background-color: green;
+}

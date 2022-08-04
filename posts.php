@@ -23,41 +23,7 @@
 
 <?php include 'header.php';  ?>
 
-<?php
-    // ako su mysql username/password i ime baze na vasim racunarima drugaciji
-    // obavezno ih ovde zamenite
-    $servername = "127.0.0.1";
-    $username = "root";
-    $password = "";
-    $dbname = "blog";
-
-    try {
-        $connection = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-        // set the PDO error mode to exception
-        $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    }
-    catch(PDOException $e)
-    {
-        echo $e->getMessage();
-    }
-
-    function getData($connection, $sql, $isFetchAll = true) {
-        $statement = $connection->prepare($sql);
-        $statement->execute();
-        $statement->setFetchMode(PDO::FETCH_ASSOC);
-
-        return $isFetchAll ? $statement->fetchAll() : $statement->fetch();
-    }
-
-    // pripremamo upit
-    $sql = "SELECT Id, Title, Body, Author, Created_at
-    FROM posts ORDER BY Created_at DESC";
-    $posts = getData($connection, $sql);
-
-    // foreach ($posts as $post) {
-    //     echo $post['Author'];
-    // }
-?>
+<?php include 'work-with-database.php';  ?>
 
 <main role="main" class="container">
 
@@ -70,11 +36,16 @@
             <!---------------------------------------------------------->
 
             <?php
+                        // pripremamo upit
+            $sql = "SELECT Id, Title, Body, Author, Created_at
+            FROM posts ORDER BY Created_at DESC";
+            $posts = getData($connection, $sql);
+
                 foreach ($posts as $post) {
             ?>
 
             <div class="blog-post">
-                <h2 class="blog-post-title"><a href="single-post.php"><?php echo ($post['Title']);?></a></h2>
+                <h2 class="blog-post-title"><a href="<?php echo('single-post.php?post-id='.($post['Id']-1)); ?> "><?php echo ($post['Title']);?></a></h2>
                 <p class="blog-post-meta"><?php echo ($post['Created_at']);?> by <a href="#"><?php echo ($post['Author']);?></a></p>
 
                 <p><?php echo ($post['Body']);?></p>
