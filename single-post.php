@@ -64,7 +64,7 @@
             <h4>Comments</h4>
             <br>
 
-            <div>
+            <div class="comment">
                 <p>Test</p>
             </div>
 
@@ -75,6 +75,8 @@
     </div><!-- /.row -->
 
 </main><!-- /.container -->
+
+<p class="comment">AAA</p>
 
 </body>
 

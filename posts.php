@@ -69,6 +69,7 @@
 
 </main><!-- /.container -->
 
+<p class="comment">AAA</p>
 </body>
 
 <?php include 'footer.php';  ?>
