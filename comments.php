@@ -22,7 +22,7 @@
                         echo "<ul>";
                     }
 
-                    echo "<li> <label class='comment-author'>Author: {$comment['Author']}</label> <p class='comment-box'>{$comment['Text']}</p> </li><br>";
+                    echo "<li> <label class='comment-author'>Author: {$comment['Ime']}</label> <p class='comment-box'>{$comment['Text']}</p> </li><br>";
 
                     $check_comment_exist = true;
                 }

@@ -45,8 +45,32 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .bnt-create-new-post{
-    background-color: rgb(40, 205, 103);
+    background-color: rgb(29, 201, 95);
     color: rgb(255, 255, 255);
     width: 100%;
-    margin-bottom: 10%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 25%;
+    padding-right: 25%;
+}
+
+.bnt-create-new-post:hover{
+    color: rgb(255, 255, 255);
+    background-color: rgb(63, 219, 43);
+}
+
+.poruka-autor-upis{
+    color: green;
+}
+
+.poruka-autor-upis-greska{
+    color: red;
+}
+
+.roze{
+    color: rgb(244, 0, 207);
+}
+
+.plava{
+    color: rgb(0, 22, 218);
 }

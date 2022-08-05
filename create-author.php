@@ -23,13 +23,7 @@
 
 <body>
 
-<?php include 'header.php';
-
-$sql = "SELECT Ime, Prezime, Pol, Id FROM author";
-
-$authors = getData($connection, $sql);
-
-?>
+<?php include 'header.php';  ?>
 
 <main role="main" class="container">
 
@@ -39,37 +33,26 @@ $authors = getData($connection, $sql);
 
 
             <div class="blog-post">
-                <h2 class="blog-post-title">Create Post</h2>
+                <h2 class="blog-post-title">Create New Author</h2>
             </div><!-- /.blog-post -->
 
             <form method="post" action="" id="usrform">
-            <textarea rows="15" cols="50" name="body" form="usrform" placeholder="Write your post here..." style="width: 100%;"></textarea>
+            <input type="text" name="ime" placeholder="Your name">
             <br><br>
-            <input type="text" name="title" placeholder="Your post title">
-            
-            <select id="cars" name="chosen-author">
-            <?php  
-            
-            foreach($authors as $author)
-            {
-                $author['Pol'] === 'Z'? $boja = 'roze' : $boja = 'plava';
-
-                echo "<option value='{$author['Id']}' class=$boja>{$author['Ime']} {$author['Prezime']}</option>";
-            }
-
-            ?>
-            </select>
-
-            <input type="submit" name="submit" value="Submit Post">
+            <input type="text" name="prezime" placeholder="Your lastname">
+            <br><br>
+            <input type="radio" name="pol" value="M">
+            <label for="">Muski pol</label>
+            <br>
+            <input type="radio" name="pol" value="Z">
+            <label for="">Zenski pol</label>
+            <br><br>
+            <input type="submit" name="submit" value="Create Author">
 
             <?php 
                     if (isset($_POST['submit']))
                     {
-                        // echo "<pre>";
-                        // var_dump($_POST);
-                        // echo "</pre>";
-
-                        createPost($connection);
+                        echo createAuthor($connection);
                     }
             ?>
             

@@ -37,16 +37,24 @@
 
             <?php
                         // pripremamo upit
-            $sql = "SELECT Id, Title, Body, Author, Created_at
-            FROM posts ORDER BY Created_at DESC";
+            // $sql = "SELECT Id, Title, Body, Created_at, Author_id
+            // FROM posts ORDER BY Created_at DESC";
+            // $posts = getData($connection, $sql);
+
+            $sql = "SELECT posts.Id, posts.Title, posts.Body, posts.Created_at, author.Ime, author.Prezime, author.Pol 
+            FROM posts JOIN author ON posts.Author_id = author.Id ORDER BY Created_at DESC";
             $posts = getData($connection, $sql);
+
+            // echo "<pre>";
+            // var_dump($posts);
+            // echo "</pre>";
 
                 foreach ($posts as $post) {
             ?>
 
             <div class="blog-post">
                 <h2 class="blog-post-title"><a href="<?php echo('single-post.php?post-id='.$post['Id']); ?> "><?php echo ($post['Title']);?></a></h2>
-                <p class="blog-post-meta"><?php echo ($post['Created_at']);?> by <a href="#"><?php echo ($post['Author']);?></a></p>
+                <p class="blog-post-meta"><?php echo ($post['Created_at']);?> by <a href="#"><?php echo ($post['Ime']." ".$post['Prezime']);?></a></p>
 
                 <p><?php echo ($post['Body']);?></p>
             </div><!-- /.blog-post -->
@@ -56,12 +64,11 @@
                 }
             ?>
 
-            <a class="btn btn-outline-primary bnt-create-new-post" href="create-post.php">Create New Post</a>
+            
 
             <nav class="blog-pagination">
                 <a class="btn btn-outline-primary" href="#">Older</a>
                 <a class="btn btn-outline-secondary disabled" href="#">Newer</a>
-
             </nav>
 
 
