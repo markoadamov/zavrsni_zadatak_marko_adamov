@@ -45,7 +45,7 @@
             ?>
 
             <div class="blog-post">
-                <h2 class="blog-post-title"><a href="<?php echo('single-post.php?post-id='.($post['Id']-1)); ?> "><?php echo ($post['Title']);?></a></h2>
+                <h2 class="blog-post-title"><a href="<?php echo('single-post.php?post-id='.$post['Id']); ?> "><?php echo ($post['Title']);?></a></h2>
                 <p class="blog-post-meta"><?php echo ($post['Created_at']);?> by <a href="#"><?php echo ($post['Author']);?></a></p>
 
                 <p><?php echo ($post['Body']);?></p>
@@ -56,10 +56,15 @@
                 }
             ?>
 
+            <a class="btn btn-outline-primary bnt-create-new-post" href="create-post.php">Create New Post</a>
+
             <nav class="blog-pagination">
                 <a class="btn btn-outline-primary" href="#">Older</a>
                 <a class="btn btn-outline-secondary disabled" href="#">Newer</a>
+
             </nav>
+
+
 
         </div><!-- /.blog-main -->
 
@@ -69,7 +74,6 @@
 
 </main><!-- /.container -->
 
-<p class="comment">AAA</p>
 </body>
 
 <?php include 'footer.php';  ?>

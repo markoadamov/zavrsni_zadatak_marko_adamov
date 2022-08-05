@@ -31,42 +31,42 @@
 
         <div class="col-sm-8 blog-main">
 
-            <?php var_dump($_GET); ?>
-
             <?php
                         // pripremamo upit
             $sql = "SELECT Id, Title, Body, Author, Created_at
-            FROM posts";
-            $posts = getData($connection, $sql);
+            FROM posts WHERE Id={$_GET['post-id']}";
+            $post = getData($connection, $sql)[0];
+
 
             $sql = "SELECT Id, Author, Text, Post_id
             FROM comments";
-
             $comments = getData($connection, $sql);
 
             ?>
 
             <div class="blog-post">
-                <h2 class="blog-post-title"><a href="single-post.php"><?php echo ($posts[$_GET['post-id']]['Title']);?></a></h2>
-                <p class="blog-post-meta"><?php echo ($posts[$_GET['post-id']]['Created_at']);?> by <a href="#"><?php echo ($posts[$_GET['post-id']]['Author']);?></a></p>
+                <h2 class="blog-post-title"><?php echo ($post['Title']);?></h2>
+                <p class="blog-post-meta"><?php echo ($post['Created_at']);?> by <a href="#"><?php echo ($post['Author']);?></a></p>
 
-                <p><?php echo ($posts[$_GET['post-id']]['Body']);?></p>
+                <p><?php echo ($post['Body']);?></p>
             </div><!-- /.blog-post -->
 
-            <form action="/action_page.php" id="usrform">
-            <input type="text" name="usrname" placeholder="Your name">
-            <input type="submit">
+            <form method="post" action="" id="usrform">
+            <textarea rows="4" cols="50" name="comment" form="usrform" placeholder="Enter comment here..." style="width: 100%;"></textarea>
+            <br><br>
+            <input type="text" name="author" placeholder="Your name">
+            <input type="submit" name="submit" value="Submit Comment">
+
+            <?php 
+                    if (isset($_POST['submit']))
+                    {
+                        submitComment($connection);
+                    }
+            ?>
+            
             </form>
-            <br>
-            <textarea rows="4" cols="50" name="comment" form="usrform" placeholder="Enter comment here..."></textarea>
 
-            <hr>
-            <h4>Comments</h4>
-            <br>
-
-            <div class="comment">
-                <p>Test</p>
-            </div>
+            <?php include 'comments.php';  ?>
 
         </div><!-- /.blog-main -->
 
@@ -76,7 +76,7 @@
 
 </main><!-- /.container -->
 
-<p class="comment">AAA</p>
+
 
 </body>
 

@@ -1,3 +1,5 @@
+<?php include 'work-with-database.php';  ?>
+
 <!doctype html>
 <html lang="en">
     
@@ -27,7 +29,30 @@
 
     <div class="row">
 
+        <div class="col-sm-8 blog-main">
 
+
+            <div class="blog-post">
+                <h2 class="blog-post-title">Create Post</h2>
+            </div><!-- /.blog-post -->
+
+            <form method="post" action="" id="usrform">
+            <textarea rows="15" cols="50" name="body" form="usrform" placeholder="Write your post here..." style="width: 100%;"></textarea>
+            <br><br>
+            <input type="text" name="title" placeholder="Your post title">
+            <input type="text" name="author" placeholder="Your name">
+            <input type="submit" name="submit" value="Submit Post">
+
+            <?php 
+                    if (isset($_POST['submit']))
+                    {
+                        createPost($connection);
+                    }
+            ?>
+            
+            </form>
+
+        </div><!-- /.blog-main -->
 
         <?php include 'sidebar.php';  ?>
 
