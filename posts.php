@@ -41,15 +41,59 @@
             // FROM posts ORDER BY Created_at DESC";
             // $posts = getData($connection, $sql);
 
-            $sql = "SELECT posts.Id, posts.Title, posts.Body, posts.Created_at, author.Ime, author.Prezime, author.Pol 
-            FROM posts JOIN author ON posts.Author_id = author.Id ORDER BY Created_at DESC";
+            $sort = 'DESC';
+
+            $_POST['submit'] === 'Uzlazno' ? $sort = 'ASC' : $sort = 'DESC';
+
+            $sql = "SELECT posts.Id, posts.Title, posts.Body, posts.Author_id, posts.Created_at, author.Ime, author.Prezime, author.Pol 
+            FROM posts JOIN author ON posts.Author_id = author.Id ORDER BY Created_at ".$sort;
+
             $posts = getData($connection, $sql);
 
+            $sql = "SELECT Ime, Prezime, Pol, Id FROM author";
+            $authors = getData($connection, $sql);
             // echo "<pre>";
             // var_dump($posts);
             // echo "</pre>";
 
+            ?>
+            
+
+
+            <form action="" method="post">
+            <select name="chosen-author">
+            <?php  
+            
+            foreach($authors as $author)
+            {
+                $author['Pol'] === 'Z'? $boja = 'roze' : $boja = 'plava';
+
+                echo "<option value='{$author['Id']}' class=$boja>{$author['Ime']} {$author['Prezime']}</option>";
+            }
+            echo "<option value='Sve'>Prikazi Sve</option>";
+            ?>
+            </select>
+
+            <input type="submit" name="submit" value="Filter">
+            </form>
+
+            <form action="" method="post">
+            <input type="submit" name="submit" value="Uzlazno">
+            <input type="submit" name="submit" value="Silazno">
+            </form>
+
+            <br>
+
+            <?php
+            // echo "<pre>";
+            // var_dump($_POST);
+            // echo "</pre>";
+
+            //var_dump($_POST['chosen-author']);
+
                 foreach ($posts as $post) {
+                    if($post['Author_id'] === $_POST['chosen-author'] || !isSet($_POST['chosen-author']) || $_POST['chosen-author'] === 'Sve')
+                    {
             ?>
 
             <div class="blog-post">
@@ -61,6 +105,7 @@
 
 
             <?php
+                    }
                 }
             ?>
 

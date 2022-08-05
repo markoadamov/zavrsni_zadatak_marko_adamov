@@ -47,7 +47,7 @@ $authors = getData($connection, $sql);
             <br><br>
             <input type="text" name="title" placeholder="Your post title">
             
-            <select id="cars" name="chosen-author">
+            <select name="chosen-author">
             <?php  
             
             foreach($authors as $author)
