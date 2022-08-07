@@ -17,7 +17,7 @@
         echo $e->getMessage();
     }
 
-    function getData($connection, $sql, $isFetchAll = true)
+    function getData($connection, $sql, $isFetchAll = true)  // Funkcja za dovlacenje podataka iz baze
     {
         $statement = $connection->prepare($sql);
         $statement->execute();
@@ -26,7 +26,7 @@
         return $isFetchAll ? $statement->fetchAll() : $statement->fetch();
     }
 
-    function submitComment($connection)
+    function submitComment($connection) // Funkcija za dodavanje novog komentara
     {     
             $Author_id = $_POST['chosen-author'];
             $Comment = $_POST['comment'];
@@ -47,7 +47,7 @@
             }  
     }
 
-    function createPost($connection)
+    function createPost($connection)  // Funkcija za dodavanje novog posta
     {
         $Title = $_POST['title'];
         $Body = $_POST['body'];
@@ -68,7 +68,7 @@
         } 
     }
 
-    function createAuthor($connection)
+    function createAuthor($connection)  // Funkcija za dodavanje novog autora
     {
         $Ime = $_POST['ime'];
         $Prezime = $_POST['prezime'];

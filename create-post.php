@@ -4,7 +4,6 @@
 <html lang="en">
     
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -41,22 +40,20 @@ $authors = getData($connection, $sql);
                 <h2 class="blog-post-title">Create Post</h2>
             </div><!-- /.blog-post -->
 
-            <form method="post" action="" id="usrform">
+            <form method="post" action="" id="usrform"> <!--Forma za kreiranje novog posta-->
             <textarea rows="15" cols="50" name="body" form="usrform" placeholder="Write your post here..." style="width: 100%;"></textarea>
             <br><br>
             <input type="text" name="title" placeholder="Your post title">
             
             <select name="chosen-author">
-            <?php  
-            
-            foreach($authors as $author)
-            {
-                $author['Pol'] === 'Z'? $boja = 'roze' : $boja = 'plava';
+                <?php  
+                    foreach($authors as $author)
+                    {
+                        $author['Pol'] === 'Z'? $boja = 'roze' : $boja = 'plava';
 
-                echo "<option value='{$author['Id']}' class=$boja>{$author['Ime']} {$author['Prezime']}</option>";
-            }
-
-            ?>
+                        echo "<option value='{$author['Id']}' class=$boja>{$author['Ime']} {$author['Prezime']}</option>";
+                    }
+                ?>
             </select>
 
             <input type="submit" name="submit" value="Submit Post">
@@ -64,10 +61,6 @@ $authors = getData($connection, $sql);
             <?php 
                     if (isset($_POST['submit']))
                     {
-                        // echo "<pre>";
-                        // var_dump($_POST);
-                        // echo "</pre>";
-
                         createPost($connection);
                     }
             ?>

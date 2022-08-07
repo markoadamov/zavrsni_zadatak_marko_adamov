@@ -45,24 +45,24 @@
             ?>
             
             <div class="drop-down-menu-and-buttons">
-                <form action="" method="post">
+                <form action="" method="post"> <!-- Drop-down menu za odabir autora ili svih autora-->
                     <select name="chosen-author">
                         <?php
                             echo "<option value='Sve' style='color: black;'>All Authors</option>";
 
                             foreach($authors as $author)
                             {
-                                $author['Pol'] === 'Z'? $boja = 'roze' : $boja = 'plava';
+                                $author['Pol'] === 'Z'? $boja = 'roze' : $boja = 'plava'; // $boja prima ime klase na osnovu pola
 
                                 echo "<option value='{$author['Id']}' class=$boja>{$author['Ime']} {$author['Prezime']}</option>";
                             }
                         ?>
                     </select>
 
-                    <input type="submit" name="submit" value="Filter">
+                    <input type="submit" name="submit" value="Filter"> <!-- Dugme Filter -->
                 </form>
 
-                <form action="" method="post">
+                <form action="" method="post"> <!--Dugmad za sortiranje postova po datumu objave-->
                     <input type="submit" name="submit" value="Uzlazno">
                     <input type="submit" name="submit" value="Silazno">
                 </form>
@@ -71,13 +71,13 @@
             <br>
 
             <?php
-                foreach ($posts as $post)
+                foreach ($posts as $post) // Prolazak kroz sve postove dovucene iz baze, ako $_POST['chosen-author'] nije setovan ili je vrednost 'Sve', prikazuju se svi postovi ili ako se poklapa sa $post['Author_id'] prikazuje se taj post
                 {
                     if($post['Author_id'] === $_POST['chosen-author'] || !isSet($_POST['chosen-author']) || $_POST['chosen-author'] === 'Sve')
                     {
             ?>
 
-            <div class="blog-post">
+            <div class="blog-post"> <!-- Prikaz posta na stranici-->
                 <h2 class="blog-post-title"><a href="<?php echo('single-post.php?post-id='.$post['Id']); ?> "><?php echo ($post['Title']);?></a></h2>
                 <p class="blog-post-meta"><?php echo ($post['Created_at']);?> by <label><?php echo ($post['Ime']." ".$post['Prezime']);?></label></p>
 

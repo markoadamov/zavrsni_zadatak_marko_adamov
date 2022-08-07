@@ -32,23 +32,10 @@
         <div class="col-sm-8 blog-main">
 
             <?php
-            
-            // pripremamo upit
+            // pripremamo upite
             $sql = "SELECT posts.Id, posts.Title, posts.Body, posts.Created_at, author.Ime, author.Prezime, author.Pol 
             FROM posts JOIN author ON posts.Author_id = author.Id HAVING Id={$_GET['post-id']}";
             $post = getData($connection, $sql)[0];
-
-            // echo "<pre>";
-            // var_dump($post);
-            // echo "</pre>";
-
-            // $sql = "SELECT Id, Title, Body, Author, Created_at
-            // FROM posts WHERE Id={$_GET['post-id']}";
-            // $post = getData($connection, $sql)[0];
-
-            // $sql = "SELECT Id, Author, Text, Post_id
-            // FROM comments";
-            // $comments = getData($connection, $sql);
 
             $sql = "SELECT comments.Id, comments.Text, comments.Post_id, author.Ime, author.Prezime, author.Pol 
             FROM comments JOIN author ON comments.Author_id = author.Id";
@@ -58,16 +45,16 @@
             $authors = getData($connection, $sql);
             ?>
 
-            <?php $post['Pol'] === 'Z' ? $boja = 'roze' : $boja = 'plava';?>
+            <?php $post['Pol'] === 'Z' ? $boja = 'roze' : $boja = 'plava';?> <!-- $boja prima ime klase na osnovu pola -->
 
-            <div class="blog-post">
+            <div class="blog-post"> <!-- Prikaz single posta -->
                 <h2 class="blog-post-title"><?php echo ($post['Title']);?></h2>
                 <p class="blog-post-meta"><?php echo ($post['Created_at']);?> by <label <?php echo "class= $boja"; ?> ><?php echo ($post['Ime']." ".$post['Prezime']);?></label></p>
 
                 <p><?php echo ($post['Body']);?></p>
             </div><!-- /.blog-post -->
 
-            <form method="post" action="" id="usrform">
+            <form method="post" action="" id="usrform"> <!--Forma za novi komentar -->
                 <textarea rows="4" cols="50" name="comment" form="usrform" placeholder="Enter comment here..." style="width: 100%;"></textarea>
                 <br><br>
                 <!-- <input type="text" name="author" placeholder="Your name"> -->
@@ -85,7 +72,7 @@
                 <input type="submit" name="submit" value="Submit Comment">
 
                 <?php 
-                    if (isset($_POST['submit']))
+                    if (isset($_POST['submit'])) // Ako je $_POST['submit'] setovan izvrsava se submitComment funkcija
                     {
                         submitComment($connection);
                     }

@@ -15,7 +15,7 @@
         <div class="container">
             <h1 class="blog-title">The Bootstrap Blog</h1>
             <p class="lead blog-description">An example blog template built with Bootstrap.</p>
-            <a class="bnt-create-new-post" href="create-post.php">Create New Post</a>     
+            <a class="bnt-create-new-post" href="create-post.php">Create New Post</a> <!-- Dugme Create New Post--> 
         </div>
     </div>
 </header>

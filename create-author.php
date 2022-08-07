@@ -35,7 +35,7 @@
                 <h2 class="blog-post-title">Create New Author</h2>
             </div><!-- /.blog-post -->
 
-            <form method="post" action="" id="usrform">
+            <form method="post" action="" id="usrform"> <!-- Forma za kreiranje novog autora -->
                 <input type="text" name="ime" placeholder="Your name">
                 <br><br>
                 <input type="text" name="prezime" placeholder="Your lastname">
