@@ -37,7 +37,6 @@ $authors = getData($connection, $sql);
 
         <div class="col-sm-8 blog-main">
 
-
             <div class="blog-post">
                 <h2 class="blog-post-title">Create Post</h2>
             </div><!-- /.blog-post -->

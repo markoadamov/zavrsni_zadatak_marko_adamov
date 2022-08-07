@@ -67,10 +67,20 @@ h1,h2,h3,h4,h5,h6 {
     color: red;
 }
 
+select {
+    color: #9e9e9e;
+    height: 27px;
+}
+
 .roze{
     color: rgb(244, 0, 207);
 }
 
 .plava{
     color: rgb(0, 22, 218);
+}
+
+.drop-down-menu-and-buttons{
+    display: flex;
+    justify-content: space-between;
 }

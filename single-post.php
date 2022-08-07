@@ -32,7 +32,8 @@
         <div class="col-sm-8 blog-main">
 
             <?php
-                        // pripremamo upit
+            
+            // pripremamo upit
             $sql = "SELECT posts.Id, posts.Title, posts.Body, posts.Created_at, author.Ime, author.Prezime, author.Pol 
             FROM posts JOIN author ON posts.Author_id = author.Id HAVING Id={$_GET['post-id']}";
             $post = getData($connection, $sql)[0];
@@ -53,11 +54,12 @@
             FROM comments JOIN author ON comments.Author_id = author.Id";
             $comments = getData($connection, $sql);
 
+            $sql = "SELECT Ime, Prezime, Pol, Id FROM author";
+            $authors = getData($connection, $sql);
             ?>
 
             <?php $post['Pol'] === 'Z' ? $boja = 'roze' : $boja = 'plava';?>
 
-            
             <div class="blog-post">
                 <h2 class="blog-post-title"><?php echo ($post['Title']);?></h2>
                 <p class="blog-post-meta"><?php echo ($post['Created_at']);?> by <label <?php echo "class= $boja"; ?> ><?php echo ($post['Ime']." ".$post['Prezime']);?></label></p>
@@ -66,18 +68,28 @@
             </div><!-- /.blog-post -->
 
             <form method="post" action="" id="usrform">
-            <textarea rows="4" cols="50" name="comment" form="usrform" placeholder="Enter comment here..." style="width: 100%;"></textarea>
-            <br><br>
-            <input type="text" name="author" placeholder="Your name">
-            <input type="submit" name="submit" value="Submit Comment">
+                <textarea rows="4" cols="50" name="comment" form="usrform" placeholder="Enter comment here..." style="width: 100%;"></textarea>
+                <br><br>
+                <!-- <input type="text" name="author" placeholder="Your name"> -->
+                <select name="chosen-author">
+                    <?php  
+                        foreach($authors as $author)
+                        {
+                            $author['Pol'] === 'Z'? $boja = 'roze' : $boja = 'plava';
 
-            <?php 
+                            echo "<option value='{$author['Id']}' class=$boja>{$author['Ime']} {$author['Prezime']}</option>";
+                        }
+                    ?>
+                </select>
+
+                <input type="submit" name="submit" value="Submit Comment">
+
+                <?php 
                     if (isset($_POST['submit']))
                     {
-                        //submitComment($connection);
+                        submitComment($connection);
                     }
-            ?>
-            
+                ?>    
             </form>
 
             <?php include 'comments.php';  ?>
@@ -89,8 +101,6 @@
     </div><!-- /.row -->
 
 </main><!-- /.container -->
-
-
 
 </body>
 

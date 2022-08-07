@@ -31,31 +31,29 @@
 
         <div class="col-sm-8 blog-main">
 
-
             <div class="blog-post">
                 <h2 class="blog-post-title">Create New Author</h2>
             </div><!-- /.blog-post -->
 
             <form method="post" action="" id="usrform">
-            <input type="text" name="ime" placeholder="Your name">
-            <br><br>
-            <input type="text" name="prezime" placeholder="Your lastname">
-            <br><br>
-            <input type="radio" name="pol" value="M">
-            <label for="">Muski pol</label>
-            <br>
-            <input type="radio" name="pol" value="Z">
-            <label for="">Zenski pol</label>
-            <br><br>
-            <input type="submit" name="submit" value="Create Author">
+                <input type="text" name="ime" placeholder="Your name">
+                <br><br>
+                <input type="text" name="prezime" placeholder="Your lastname">
+                <br><br>
+                <input type="radio" name="pol" value="M">
+                <label for="">Muski pol</label>
+                <br>
+                <input type="radio" name="pol" value="Z">
+                <label for="">Zenski pol</label>
+                <br><br>
+                <input type="submit" name="submit" value="Create Author">
 
-            <?php 
-                    if (isset($_POST['submit']))
-                    {
-                        echo createAuthor($connection);
-                    }
-            ?>
-            
+                <?php 
+                        if (isset($_POST['submit']))
+                        {
+                            echo createAuthor($connection);
+                        }
+                ?>
             </form>
 
         </div><!-- /.blog-main -->
